@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/css.css">
+  <title>Simple Todo Lists</title>
+</head>
+<body
+
+<div class="container">
+
+<header>
+    <h1>SIMPLE TODO LISTS</h1>
+    <h3>FROM RUBY GARAGE</h3>
+  </header>
+
+  <div id="app">
+
+    <div class="project" v-for="(project, index1) in projects">
+
+      <div class="project__header">
+        <div class="project__header__project-title">
+          <h2 class="project__header__project-title__heading">{{project.title}}</h2>
+          <span class="btn btn-edit-project" v-on:click="editProject(index1)">
+            <img src="img/icon-project-edit.png">
+          </span>
+          <span class="btn btn-delete-project" v-on:click="deleteProject(index1)">
+            <img src="img/icon-project-delete.png">
+          </span>
+        </div>
+        <div class="project__header__add-task">
+          <input class="project__header__add-task__input new_task" type="text" placeholder="Start typing here to create a task...">
+          <button class="btn btn-add-task" v-on:click="addTask(index1)">Add Task</button>
+        </div>
+      </div>
+      <table>
+        <tr class="project__tasks" v-for="(task, index2) in project.tasks">
+          <td class="btn btn-task-check">
+            <span class="btn-task-check-img" v-bind:class="{done: task.isDone}" v-on:click="toggleDone(index1, index2)"></span>
+          </td>
+          <td class="task-title" v-bind:class="{done_task_title: task.isDone}">{{task.title}}</td>
+          <td class="btn btn-edit-task" v-on:click="editTask(index1, index2)">
+            <img class="btn-edit-task-img" src="img/icon-task-edit.png">
+          </td>
+          <td class="btn btn-delete-task" v-on:click="deleteTask(index1, index2)">
+            <img src="img/icon-task-delete.png">
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <button class="btn btn-add-project" v-on:click="addProject()"><img src="img/icon-plus-add.png">Add TODO List</button>
+
+  </div>
+
+  <footer>
+    <p>&copy; <a href="https://github.com/miagkovi">miagkovi</a> special for Ruby Garage</p>
+  </footer>
+
+</div>
+
+  
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.0/vue.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>
